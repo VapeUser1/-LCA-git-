@@ -78,3 +78,4 @@ def isBST(root):
 #root = buildTree([1,3,6,4,5,7,8,'null'])
 #node2 = root.getNode(3)
 #print(node2.right)
+#tese
