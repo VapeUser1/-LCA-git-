@@ -17,6 +17,15 @@ class TreeNode:
             if n.val == val:
                 return n
         return None
+    def getDepth(self):
+        if self == None:
+            return 0
+        left_depth = self.left.getDepth() if self.left != None else 0
+        right_depth = self.right.getDepth() if self.right != None else 0
+        return 1 + max(left_depth, right_depth)
+    def getMaxLen(self): #查找所有节点val最大长度
+        lst = self.getNodeList()
+        return max([len(str(n.val)) for n in lst])
 
 #统计节点数
 def countNode(root):
@@ -75,7 +84,17 @@ def isBST(root):
         B = root.left.val < root.val < root.right.val
     return isBST(root.left) and isBST(root.right) and B
 
-#root = buildTree([1,3,6,4,5,7,8,'null'])
-#node2 = root.getNode(3)
-#print(node2.right)
-#tese
+#查找最近共同祖先lca
+def findLCA(root, n1, n2):
+    if root == None:
+        return None
+    if root.val == n1 or root.val == n2:
+        return root
+    left_lca = findLCA(root.left, n1, n2)
+    right_lca = findLCA(root.right, n1, n2)
+    if left_lca != None and right_lca != None:
+        return root
+    return left_lca if left_lca != None else right_lca
+
+#tree = buildTree([4,1,6,2,7,5,None,8,12,123,1234])
+#print(tree.getMaxLen())
