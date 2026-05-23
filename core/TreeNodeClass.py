@@ -11,6 +11,9 @@ class TreeNode:
     def getNodeList(self): #前序排列法列表
         if self.left == None and self.right == None:
             return [self]
+        if self.left == None or self.right == None:
+            child = self.left if self.left != None else self.right
+            return [self] + child.getNodeList()
         return [self] + self.left.getNodeList() + self.right.getNodeList()
     def getNode(self, val):
         for n in self.getNodeList():
